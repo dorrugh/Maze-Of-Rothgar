@@ -19,7 +19,13 @@ def showInstructions():
     ENTER AND EXPERIENCE YOUR WILDEST DREAMS!!!! OR... BECOME A VICTIM TO YOUR DARKEST NIGHTMARE!!! 
     ======================================================================================================
     Goal: Escape the maze by collecting items in your inventory!
-    Score: You have a score based off how many item are in your inventory! 1 item gained = 1 point added to your score
+    Score: You have a score based off how many item are in your inventory! 1 item gained = 1 point added to your score.
+
+    *************************************DEVELOPER NOTE****************************************************
+    *                                                                                                     *                         
+    *           There are only 2 items currently in the game but more are coming soon.. Stay Tuned!       *
+    *                           So only a max of 2 points can be gained for now!                          *    
+    *******************************************************************************************************
     Commands:
       go [direction]
       get [item]
@@ -36,7 +42,7 @@ def showInstructions():
     # displays a timer before the game begins
     # range returns a sequence of numbers, increments by 1(by default), and stops before a specified number
     # range(start, stop, step) step specifies the incrementation. So increment -1 starting from 10 ex(10,9,8, etc.. until it reaches 1).
-    for i in range(10, 0, -1):
+    for i in range(15, 0, -1):
         print(f"  The game will start in {i} seconds ", end="\r", flush=True)
         time.sleep(1)
     clear()
