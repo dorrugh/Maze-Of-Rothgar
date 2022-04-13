@@ -30,6 +30,7 @@ def showInstructions():
       go [direction]
       get [item]
       quit [allows you to exit the game at any time]
+      highscore [allows you to check the current leaderboards]
     ''')
 
     # Plays the background game music
@@ -84,9 +85,9 @@ inventory = []
 
 # start the player in the Hall (see gameSetting.py)
 currentRoom = 'Hall'
-# lets player know theyre current score.... see lines 123-127
+# lets player know theyre current score.... see lines 123-128
 score = 0
-# input asking for the players name. we use this variable to write to our txt file....see lines 150-153
+# input asking for the players name. we use this variable to write to our txt file....see lines 150-154
 name = input("Please enter your name. \n >").strip(" ").capitalize()
 # starts the game
 showInstructions()
