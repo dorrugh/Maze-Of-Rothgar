@@ -84,9 +84,9 @@ inventory = []
 
 # start the player in the Hall (see gameSetting.py)
 currentRoom = 'Hall'
-# lets player know theyre current score.... see lines 118-121
+# lets player know theyre current score.... see lines 123-127
 score = 0
-# input asking for the players name. we use this variable to write to our txt file....see lines 145-147
+# input asking for the players name. we use this variable to write to our txt file....see lines 150-153
 name = input("Please enter your name. \n >").strip(" ").capitalize()
 # starts the game
 showInstructions()
