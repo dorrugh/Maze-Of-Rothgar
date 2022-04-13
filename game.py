@@ -78,14 +78,15 @@ inventory = []
 
 # start the player in the Hall (see gameSetting.py)
 currentRoom = 'Hall'
+# lets player know theyre current score.... see lines 118-121
 score = 0
+# input asking for the players name. we use this variable to write to our txt file....see lines 145-147
 name = input("Please enter your name. \n >").strip(" ").capitalize()
 # starts the game
 showInstructions()
 # loop forever
 while True:
     showStatus()
-    # os.system("LostWoods.mp3")
 
     # get the player's next 'move'
     # .split() breaks it up into an list array
@@ -133,11 +134,25 @@ while True:
         gameover.close()
         print('\n\nScary little human couldnt handle the maze of Rothgar? Your name will forever be remembered as Gooshcar the Frieghtened\n\n')
         break
-    if move[0] == 'hghscore':
+
+    if move[0] == 'highscore':
+        # open the score table txt and write the players name (we got this from an earlier input) and the players score (this was a declared viarvle see)
+        score_header = open('score(header).txt', 'r')
+        print(score_header.read())
+        score_header.close()
+        pass
         scoretable = open('score.txt', 'a')
-        scoretable.write('%s-%s' % (name, score))
+        scoretable.write(f'{name}............{score}\n')
+        scoretable.close
+        pass
+        # open the score table txt and read from it
+        scoretable = open('score_table.txt', 'r')
+        print("======================================================================================================\n")
+        print(scoretable.read())
         scoretable.close()
-        break
+        # added input to give the user further instructions via an input
+        input('Press enter to resume game >')
+        clear()
 
     # If a player enters a room with a monster
     if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
