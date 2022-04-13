@@ -17,7 +17,9 @@ def showInstructions():
     print('''
     WELCOME TO THE MAZE OF ROTHGAR!!!
     ENTER AND EXPERIENCE YOUR WILDEST DREAMS!!!! OR... BECOME A VICTIM TO YOUR DARKEST NIGHTMARE!!! 
-    ========
+    ======================================================================================================
+    Goal: Escape the maze by collecting items in your inventory!
+    Score: You have a score based off how many item are in your inventory! 1 item gained = 1 point added to your score
     Commands:
       go [direction]
       get [item]
@@ -28,6 +30,8 @@ def showInstructions():
     pygame.init()
     pygame.mixer.music.load('LostWoods.wav')
     pygame.mixer.music.play()
+
+    # input to enter theyre name
 
     # displays a timer before the game begins
     # range returns a sequence of numbers, increments by 1(by default), and stops before a specified number
@@ -50,8 +54,9 @@ def showStatus():
         print(hall.read())
         hall.close()
     print('---------------------------')
+    print(f"{name} Current Score: {score}")
     print('You are in the ' + currentRoom)
-    print('Inventory : ' + str(inventory))
+    print(f'Inventory : {str(inventory)}')
     if "item" in rooms[currentRoom]:
         print('You see a ' + rooms[currentRoom]['item'])
     print("---------------------------")
@@ -73,6 +78,8 @@ inventory = []
 
 # start the player in the Hall (see gameSetting.py)
 currentRoom = 'Hall'
+score = 0
+name = input("Please enter your name. \n >").strip(" ").capitalize()
 # starts the game
 showInstructions()
 # loop forever
@@ -109,6 +116,8 @@ while True:
         if "item" in rooms[currentRoom] and move[1] in rooms[currentRoom]['item']:
             # add the item to their inventory
             inventory += [move[1]]
+            # increase the score
+            score += 1
             # display a helpful message
             print(f"A {move[1]} has been added to your inventory!")
             # delete the item from the room
@@ -124,6 +133,11 @@ while True:
         gameover.close()
         print('\n\nScary little human couldnt handle the maze of Rothgar? Your name will forever be remembered as Gooshcar the Frieghtened\n\n')
         break
+    if move[0] == 'hghscore':
+        scoretable = open('score.txt', 'a')
+        scoretable.write('%s-%s' % (name, score))
+        scoretable.close()
+        break
 
     # If a player enters a room with a monster
     if 'item' in rooms[currentRoom] and 'monster' in rooms[currentRoom]['item']:
@@ -131,10 +145,6 @@ while True:
         print(gameover.read())
         gameover.close()
         print('\n\nA monster has got you... GAME OVER! SEE? I TOLD YOU! FOOLISH MORTAL! YOU EXPEREINCED YOUR DARKEST NIGHTMARE!\n\n')
-        # time.sleep(3)
-        # pygame.mixer.music.unload()
-        # pygame.mixer.music.load('Gotcha.wav')
-        # pygame.mixer.music.play()
         break
 
     # player wins if they're in the garden and have key&potion in their inventory
